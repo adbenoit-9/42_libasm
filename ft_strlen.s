@@ -2,11 +2,14 @@ section .text
 	global ft_strlen
 
 ft_strlen:
-	mov rax, 0
-	cmp byte[rdi + rax], 0
-	JNE increment
-	ret
+	MOV rax, 0
+	JMP cmp
+	RET
 
-increment:
-	add rax, 1
-	ret
+incr:
+	INC rax
+
+cmp:
+	CMP byte[rdi + rax], 0
+	JNE incr
+	RET

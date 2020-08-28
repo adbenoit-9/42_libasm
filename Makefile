@@ -12,27 +12,36 @@
 
 NAME    =	libasm.a
 
-SRCS    = 	ft_strlen.s
+SRCS    = 	ft_strlen.s	ft_strcpy.s \
+			ft_strcmp.s
 
 OBJS    =	${SRCS:.s=.o}
 
 CFLAGS  =	-Wall -Wextra -Werror
 
-${NAME}: ${OBJS}
-		ar rc ${NAME} ${OBJS}
-
 all: ${NAME}
 
 .s.o:
-	@nasm -f macho64 -s $< -o ${<:.s=.o}
-	@gcc ${CFLAGS} -s $< -o ${<:.s=.o}
+	@nasm -f elf64 -s $< -o ${<:.s=.o}
+
+${NAME}: ${OBJS}
+	@ar rcs ${NAME} ${OBJS}
+	@ranlib ${NAME}
+	
+run: ${NAME}
+	@gcc ${CFLAGS} main.c -L ./ -lasm -o exe
 
 clean:
-	${RM} ${OBJS}
+	@${RM} ${OBJS}
 
 fclean: clean
-	${RM} ${NAME} 
+	@${RM} ${NAME}
+	@$(RM) exe
 
 re: fclean all
 
-.PHONY: all clean fclean re
+debug:
+	@echo SRCS = ${SRCS}
+	@echo OBJS = ${OBJS}
+
+.PHONY: all clean fclean re run debug
