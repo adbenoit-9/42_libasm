@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adbenoit <adbenoit@student.42.fr>          +#+  +:+       +#+         #
+#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/26 16:04:57 by adbenoit          #+#    #+#              #
-#    Updated: 2020/08/26 16:30:55 by adbenoit         ###   ########.fr        #
+#    Updated: 2020/08/29 18:24:09 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    =	libasm.a
 
 SRCS    = 	ft_strlen.s	ft_strcpy.s \
-			ft_strcmp.s
+			ft_strcmp.s	ft_write.s
 
 OBJS    =	${SRCS:.s=.o}
 

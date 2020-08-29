@@ -1,9 +1,16 @@
-#include <stdio.h>
-#include <string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/29 14:14:31 by user42            #+#    #+#             */
+/*   Updated: 2020/08/29 19:05:33 by user42           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-size_t	ft_strlen(char *str);
-char	*ft_strcpy(char *dest, const char *src);
-int		ft_strcmp(const char *s1, const char *s2);
+#include "libasm.h"
 
 void	print_strlen(void)
 {
@@ -68,6 +75,35 @@ void	print_strcmp(void)
 	printf("%s%d%s\n\n", "\033[1;32m", strcmp(str8, str9), "\033[0m");
 }
 
+void	print_write(void)
+{
+	int ret0;
+	int ret1;
+	int fd;
+	char *str0 = "Sample text";
+
+	fd = 1;
+	ret0 = write(fd, str0, ft_strlen(str0));
+	ret1 = ft_write(fd, str0, ft_strlen(str0));
+	printf("%s%d	%s%s\n", "\033[0;1;33m", ret0, strerror(errno), "\033[0m");
+	printf("%s%d	%s%s\n\n", "\033[1;32m", ret1, strerror(errno), "\033[0m");
+	fd = open("./test_wr", O_WRONLY);
+	ret0 = write(fd, str0, ft_strlen(str0));
+	ret1 = ft_write(fd, str0, ft_strlen(str0));
+	printf("%s%d	%s%s\n", "\033[1;33m", ret0, strerror(errno), "\033[0m");
+	printf("%s%d	%s%s\n\n", "\033[1;32m", ret1, strerror(errno), "\033[0m");
+	fd = -1;
+	ret0 = write(fd, str0, ft_strlen(str0));
+	ret1 = ft_write(fd, str0, ft_strlen(str0));
+	printf("%s%d	%s%s\n", "\033[1;33m", ret0, strerror(errno), "\033[0m");
+	printf("%s%d	%s%s\n\n", "\033[1;32m", ret1, strerror(errno), "\033[0m");
+
+	ret0 = ft_write(1, str0, 2);
+	ret1 = write(1, str0, 2);
+	printf("%s%d	%s%s\n", "\033[1;33m", ret0, strerror(errno), "\033[0m");
+	printf("%s%d	%s%s\n\n", "\033[1;32m", ret1, strerror(errno), "\033[0m");
+}
+
 int	main()
 {
 	printf("\033[1;33mMine \033[1;32mComputer's\n");
@@ -82,5 +118,7 @@ int	main()
 	printf("\n\033[1;4;34m******** strcmp ********\n\n");
 	print_strcmp();
 
+	printf("\n\033[1;4;34m******** write ********\n\n");
+	print_write();
 	return (0);
 }
