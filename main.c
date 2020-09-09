@@ -6,11 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 14:14:31 by user42            #+#    #+#             */
-/*   Updated: 2020/08/31 19:21:08 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/01 14:40:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasm.h"
+#include "includes/libasm.h"
 
 void	print_strlen(void)
 {
@@ -97,13 +97,13 @@ void	print_write(void)
 	ret = write(fd, str, ft_strlen(str));
 	printf("|		%s%d	%s%s\n\n", "\033[1;32m", ret, strerror(errno), "\033[0m");
 
-	// fd = -1;
-	// errno = 0;
-	// ret = ft_write(fd, str, ft_strlen(str));
-	// printf("|		%s%d	%s%s\n", "\033[1;33m", ret, strerror(errno), "\033[0m");
-	// errno = 0;
-	// ret = write(fd, str, ft_strlen(str));
-	// printf("|		%s%d	%s%s\n\n", "\033[1;32m", ret, strerror(errno), "\033[0m");
+	fd = -1;
+	errno = 0;
+	ret = ft_write(fd, str, ft_strlen(str));
+	printf("|		%s%d	%s%s\n", "\033[1;33m", ret, strerror(errno), "\033[0m");
+	errno = 0;
+	ret = write(fd, str, ft_strlen(str));
+	printf("|		%s%d	%s%s\n\n", "\033[1;32m", ret, strerror(errno), "\033[0m");
 
 	errno = 0;
 	ret = ft_write(1, str, 2);
@@ -151,10 +151,10 @@ void	print_read(void)
 	printf("%s%d	%s%s\n\n", "\033[1;32m", ret, strerror(errno), "\033[0m");
 	close(fd);
 
-	// fd = -1;
-	// errno = 0;
-	// ret = ft_read(fd, str, 4098);
-	// printf("%s%d	%s%s\n", "\033[1;33m", ret, strerror(errno), "\033[0m");
+	fd = -1;
+	errno = 0;
+	ret = ft_read(fd, str, 4098);
+	printf("%s%d	%s%s\n", "\033[1;33m", ret, strerror(errno), "\033[0m");
 	errno = 0;
 	ret = read(fd, str, 4098);
 	printf("%s%d	%s%s\n\n", "\033[1;32m", ret, strerror(errno), "\033[0m");
@@ -165,36 +165,29 @@ void	print_strdup(void)
 	char str0[500] = "";
 	char str1[500] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
-	printf("%s%s%s\n", "\033[0;1;33m", ft_strdup(str0), "\033[0m");
-	printf("%s%s%s\n\n", "\033[1;32m", strdup(str0), "\033[0m");
-	printf("%s%s%s\n", "\033[1;33m", ft_strdup(str1), "\033[0m");
-	printf("%s%s%s\n\n", "\033[1;32m", strdup(str1), "\033[0m");
-	printf("%s%s%s\n", "\033[1;33m", ft_strdup("\0"), "\033[0m");
-	printf("%s%s%s\n\n", "\033[1;32m", strdup("\0"), "\033[0m");
-	printf("%s%s%s\n", "\033[1;33m", ft_strdup("test"), "\033[0m");
-	printf("%s%s%s\n\n", "\033[1;32m", strdup("test"), "\033[0m");
+	printf("%s%s|%s\n", "\033[0;1;33m", ft_strdup(str0), "\033[0m");
+	printf("%s%s|%s\n\n", "\033[1;32m", strdup(str0), "\033[0m");
+	printf("%s%s|%s\n", "\033[1;33m", ft_strdup(str1), "\033[0m");
+	printf("%s%s|%s\n\n", "\033[1;32m", strdup(str1), "\033[0m");
+	printf("%s%s|%s\n", "\033[1;33m", ft_strdup("\0"), "\033[0m");
+	printf("%s%s|%s\n\n", "\033[1;32m", strdup("\0"), "\033[0m");
+	printf("%s%s|%s\n", "\033[1;33m", ft_strdup("test"), "\033[0m");
+	printf("%s%s|%s\n\n", "\033[1;32m", strdup("test"), "\033[0m");
 }
 
 int	main()
 {
 	printf("\033[1;33mMine\n\033[1;32mComputer's\n");
-
 	printf("\n\033[1;4;34m******** strlen ********\n\n");
 	print_strlen();
-
-
 	printf("\n\033[1;4;34m******** strcpy ********\n\n");
 	print_strcpy();
-
 	printf("\n\033[1;4;34m******** strcmp ********\n\n");
 	print_strcmp();
-
 	printf("\n\033[1;4;34m******** write ********\033[0m\n\n");
 	print_write();
-
 	printf("\n\033[1;4;34m******** read ********\033[0m\n\n");
 	print_read();
-
 	printf("\n\033[1;4;34m******** strdup ********\033[0m\n\n");
 	print_strdup();
 	return (0);

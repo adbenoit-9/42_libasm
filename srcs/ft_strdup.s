@@ -6,12 +6,13 @@ section .text
 
 ft_strdup:
     xor rax, rax
-    xor rcx, rcx
-    mov rcx, [rdi]
+    xor r8, r8
+    mov r8, rdi
     call ft_strlen
     mov rdi, rax
+    INC rdi
     call malloc
-    mov rdi, [rax]
-    mov rsi, [rcx]
+    mov rdi, rax
+    mov rsi, r8
     call ft_strcpy
     ret
