@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 14:14:31 by user42            #+#    #+#             */
-/*   Updated: 2020/09/01 14:40:56 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/29 15:39:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,33 +84,33 @@ void	print_write(void)
 	fd = 1;
 	errno = 0;
 	ret = ft_write(fd, str, ft_strlen(str));
-	printf("|	%s%d	%s%s\n", "\033[0;1;33m", ret, strerror(errno), "\033[0m");
+	printf("|	%serrno = %d, ret = %d	%s%s\n", "\033[0;1;33m", errno, ret, strerror(errno), "\033[0m");
 	errno = 0;
 	ret = write(fd, str, ft_strlen(str));
-	printf("|	%s%d	%s%s\n\n", "\033[1;32m", ret, strerror(errno), "\033[0m");
+	printf("|	%serrno = %d, ret = %d	%s%s\n\n", "\033[1;32m", errno, ret, strerror(errno), "\033[0m");
 
 	fd = open("./test_wr", O_WRONLY);
 	errno = 0;
 	ret = ft_write(fd, str, ft_strlen(str));
-	printf("|		%s%d	%s%s\n", "\033[1;33m", ret, strerror(errno), "\033[0m");
+	printf("|		%serrno = %d, ret = %d	%s%s\n", "\033[1;33m", errno, ret, strerror(errno), "\033[0m");
 	errno = 0;
 	ret = write(fd, str, ft_strlen(str));
-	printf("|		%s%d	%s%s\n\n", "\033[1;32m", ret, strerror(errno), "\033[0m");
+	printf("|		%serrno = %d, ret = %d	%s%s\n\n", "\033[1;32m", errno, ret, strerror(errno), "\033[0m");
 
 	fd = -1;
 	errno = 0;
 	ret = ft_write(fd, str, ft_strlen(str));
-	printf("|		%s%d	%s%s\n", "\033[1;33m", ret, strerror(errno), "\033[0m");
+	printf("|		%serrno = %d, ret = %d	%s%s\n", "\033[1;33m", errno, ret, strerror(errno), "\033[0m");
 	errno = 0;
 	ret = write(fd, str, ft_strlen(str));
-	printf("|		%s%d	%s%s\n\n", "\033[1;32m", ret, strerror(errno), "\033[0m");
+	printf("|		%serrno = %d, ret = %d	%s%s\n\n", "\033[1;32m", errno, ret, strerror(errno), "\033[0m");
 
 	errno = 0;
 	ret = ft_write(1, str, 2);
-	printf("|		%s%d	%s%s\n", "\033[1;33m", ret, strerror(errno), "\033[0m");
+	printf("|		%serrno = %d, ret = %d	%s%s\n", "\033[1;33m", errno, ret, strerror(errno), "\033[0m");
 	errno = 0;
 	ret = write(1, str, 2);
-	printf("|		%s%d	%s%s\n\n", "\033[1;32m", ret, strerror(errno), "\033[0m");
+	printf("|		%serrno = %d, ret = %d	%s%s\n\n", "\033[1;32m", errno, ret, strerror(errno), "\033[0m");
 }
 
 void	print_read(void)
@@ -123,41 +123,41 @@ void	print_read(void)
 	errno = 0;
 	write(1, "Please enter the input: ", 24);
 	ret = ft_read(fd, str, 4098);
-	printf("%s%d	%s%s\n", "\033[0;1;33m", ret, strerror(errno), "\033[0m");
+	printf("%serrno = %d, ret = %d	%s%s\n", "\033[0;1;33m", errno, ret, strerror(errno), "\033[0m");
 	errno = 0;
 	write(1, "Please enter the same input: ", 29);
 	ret = read(fd, str, 4098);
-	printf("%s%d	%s%s\n\n", "\033[1;32m", ret, strerror(errno), "\033[0m");
+	printf("%serrno = %d, ret = %d	%s%s\n\n", "\033[1;32m", errno, ret, strerror(errno), "\033[0m");
 
 	fd = open("./test_rd", O_RDONLY);
 	errno = 0;
 	ret = ft_read(fd, str, 4098);
-	printf("%s%d	%s%s\n", "\033[1;33m", ret, strerror(errno), "\033[0m");
+	printf("%serrno = %d, ret = %d	%s%s\n", "\033[1;33m", errno, ret, strerror(errno), "\033[0m");
 	close(fd);
 	fd = open("./test_rd", O_RDONLY);
 	errno = 0;
 	ret = read(fd, str, 4098);
-	printf("%s%d	%s%s\n\n", "\033[1;32m", ret, strerror(errno), "\033[0m");
+	printf("%serrno = %d, ret = %d	%s%s\n\n", "\033[1;32m", errno, ret, strerror(errno), "\033[0m");
 	close(fd);
 
 	errno = 0;
 	fd = open("./test_rd", O_RDONLY);
 	ret = ft_read(fd, str, 4);
-	printf("%s%d	%s%s\n", "\033[1;33m", ret, strerror(errno), "\033[0m");
+	printf("%serrno = %d, ret = %d	%s%s\n", "\033[1;33m", errno, ret, strerror(errno), "\033[0m");
 	close(fd);
 	fd = open("./test_rd", O_RDONLY);
 	errno = 0;
 	ret = read(fd, str, 4);
-	printf("%s%d	%s%s\n\n", "\033[1;32m", ret, strerror(errno), "\033[0m");
+	printf("%serrno = %d, ret = %d	%s%s\n\n", "\033[1;32m", errno, ret, strerror(errno), "\033[0m");
 	close(fd);
 
 	fd = -1;
 	errno = 0;
 	ret = ft_read(fd, str, 4098);
-	printf("%s%d	%s%s\n", "\033[1;33m", ret, strerror(errno), "\033[0m");
+	printf("%serrno = %d, ret = %d	%s%s\n", "\033[1;33m", errno, ret, strerror(errno), "\033[0m");
 	errno = 0;
 	ret = read(fd, str, 4098);
-	printf("%s%d	%s%s\n\n", "\033[1;32m", ret, strerror(errno), "\033[0m");
+	printf("%serrno = %d, ret = %d	%s%s\n\n", "\033[1;32m", errno, ret, strerror(errno), "\033[0m");
 }
 
 void	print_strdup(void)
