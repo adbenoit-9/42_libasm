@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/26 16:04:57 by adbenoit          #+#    #+#              #
-#    Updated: 2020/09/01 17:25:46 by user42           ###   ########.fr        #
+#    Updated: 2020/10/29 15:39:46 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,25 +18,13 @@ SRCS    	= 	ft_strlen.s	ft_strcpy.s \
 				ft_strcmp.s	ft_write.s \
 				ft_read.s	ft_strdup.s
 
-BONUS_PATH	=	srcs_bonus/
-
-SRCS_BONUS	=	ft_atoi_base_bonus.s
-
 OBJS_NAME    	=	$(SRCS:.s=.o)
 
-OBJS_NAME_BONUS	=	$(SRCS_BONUS:.s=.o)
-
 OBJS			=	$(addprefix $(SRCS_PATH),$(OBJS_NAME))
-
-OBJS_BONUS		=	$(addprefix $(BONUS_PATH),$(OBJS_NAME_BONUS))
 
 CFLAGS  	=	-Wall -Wextra -Werror
 
 all: $(NAME)
-
-bonus: $(NAME) $(OBJS_BONUS)
-	@ar rcs $(NAME) $(OBJS_BONUS)
-	@ranlib $(NAME)
 
 .s.o:
 	@nasm -f elf64 -s $< -o $(<:.s=.o)
@@ -51,14 +39,8 @@ run: $(NAME)
 	@echo "Compilation of \033[33;1mLibasm\033[0;1m: [\033[1;32mOK\033[0;1m]"
 	@./exe
 
-run_bonus: bonus
-	@gcc -no-pie $(CFLAGS) main_bonus.c -L ./ -lasm -o exe
-	@echo "Compilation of \033[33;1mLibasm\033[0;1m: [\033[1;32mOK\033[0;1m]"
-	@./exe
-
 clean:
 	@$(RM) $(OBJS)
-	@$(RM) $(OBJS_BONUS)
 	@echo "\033[33;1mLibasm\033[0;1m: objects deleted\033[0m"
 
 fclean: clean
