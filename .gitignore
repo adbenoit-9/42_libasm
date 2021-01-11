@@ -1,0 +1,3 @@
+exe
+libasm.a
+*/*.o

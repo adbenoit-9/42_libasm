@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/26 16:04:57 by adbenoit          #+#    #+#              #
-#    Updated: 2020/10/29 15:39:46 by user42           ###   ########.fr        #
+#    Updated: 2021/01/11 16:07:46 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ $(NAME): $(OBJS)
 	@echo "Creation of \033[33;1m$(NAME)\033[0;1m: [\033[1;32mOK\033[0;1m]"
 	
 run: $(NAME)
-	@gcc -no-pie $(CFLAGS) main.c -L ./ -lasm -o exe
+	@gcc -no-pie $(CFLAGS) tests/main.c -L ./ -lasm -o exe
 	@echo "Compilation of \033[33;1mLibasm\033[0;1m: [\033[1;32mOK\033[0;1m]"
 	@./exe
 

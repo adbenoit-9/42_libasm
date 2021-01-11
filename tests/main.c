@@ -6,19 +6,29 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 14:14:31 by user42            #+#    #+#             */
-/*   Updated: 2020/10/29 15:39:45 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/11 16:18:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libasm.h"
+#include "../includes/libasm.h"
 
 void	print_strlen(void)
 {
-	char str0[500] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-	char *str1 = "Hello World!";
-	char str2[500] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-	char *str3 = "";
+	char	str0[500] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+	char	*str1 = "Hello World!";
+	char	str2[500] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+	char	*str3 = "";
+	char	buf[4096];
+	int		fd;
 
+	fd = open("tests/charizard.txt", O_RDONLY);
+	read(fd, buf, 4095);
+	printf("%s%ld%s\n", "\033[0;1;33m", ft_strlen(buf), "\033[0m");
+	close(fd);
+	fd = open("tests/charizard.txt", O_RDONLY);
+	read(fd, buf, 4095);
+	printf("%s%ld%s\n\n", "\033[1;32m", strlen(buf), "\033[0m");
+	close(fd);
 	printf("%s%ld%s\n", "\033[0;1;33m", ft_strlen(str0), "\033[0m");
 	printf("%s%ld%s\n\n", "\033[1;32m", strlen(str0), "\033[0m");
 	printf("%s%ld%s\n", "\033[1;33m", ft_strlen(str1), "\033[0m");
@@ -30,16 +40,28 @@ void	print_strlen(void)
 }
 void	print_strcpy(void)
 {
-	char str0[500] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-	char *str1 = "Hello World!";
-	char str2[500] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-	char *str3 = "";
-	char str4[500] = "Hello World!";
-	char *str5 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-	char str6[500] = "";
-	char *str7 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+	char	str0[500] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+	char	*str1 = "Hello World!";
+	char	str2[500] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+	char	*str3 = "";
+	char	str4[500] = "Hello World!";
+	char	*str5 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+	char	str6[500] = "";
+	char	str8[500]="";
+	char	*str7 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+	char	buf[4098];
+	char	dest1[4098];
+	char	dest2[4098];
+	int		fd;
 
-	
+	fd = open("tests/charizard.txt", O_RDONLY);
+	read(fd, buf, 4095);
+	printf("%s%s%s|\n", "\033[0;1;33m", ft_strcpy(dest1, buf), "\033[0m");
+	close(fd);
+	fd = open("tests/charizard.txt", O_RDONLY);
+	read(fd, buf, 4095);
+	printf("%s%s%s|\n", "\033[0;1;33m", ft_strcpy(dest2, buf), "\033[0m");
+	close(fd);
 	printf("%s%s%s|\n", "\033[0;1;33m", ft_strcpy(str0, str1), "\033[0m");
 	printf("%s%s%s|\n\n", "\033[1;32m", strcpy(str0, str1), "\033[0m");
 	printf("%s%s%s|\n", "\033[1;33m", ft_strcpy(str2, str3), "\033[0m");
@@ -47,21 +69,21 @@ void	print_strcpy(void)
 	printf("%s%s%s|\n", "\033[1;33m", ft_strcpy(str4, str5), "\033[0m");
 	printf("%s%s%s|\n\n", "\033[1;32m", strcpy(str4, str5), "\033[0m");
 	printf("%s%s%s|\n", "\033[1;33m", ft_strcpy(str6, str7), "\033[0m");
-	printf("%s%s%s|\n\n", "\033[1;32m", strcpy(str6, str7), "\033[0m");
+	printf("%s%s%s|\n\n", "\033[1;32m", strcpy(str8, str7), "\033[0m");
 }
 
 void	print_strcmp(void)
 {
-	char str0[100] = "";
-	char str1[100] = "";
-	char str2[100] = "";
-	char str3[100] = "Hello World!";
-	char str4[100] = "Hello World!";
-	char str5[100] = "";
-	char str6[100] = "Hello World!";
-	char str7[100] = "Hello World!";
-	char str8[100] = "Hey";
-	char str9[100] = "Hello World!";
+	char	str0[100] = "";
+	char	str1[100] = "";
+	char	str2[100] = "";
+	char	str3[100] = "Hello World!";
+	char	str4[100] = "Hello World!";
+	char	str5[100] = "";
+	char	str6[100] = "Hello World!";
+	char	str7[100] = "Hello World!";
+	char	str8[100] = "Hey";
+	char	str9[100] = "Hello World!";
 	
 	printf("%s%d%s\n", "\033[0;1;33m", ft_strcmp(str0, str1), "\033[0m");
 	printf("%s%d%s\n\n", "\033[1;32m", strcmp(str0, str1), "\033[0m");
@@ -79,7 +101,7 @@ void	print_write(void)
 {
 	int ret;
 	int fd;
-	char *str = "Sample text";
+	char	*str = "Sample text";
 
 	fd = 1;
 	errno = 0;
@@ -89,7 +111,7 @@ void	print_write(void)
 	ret = write(fd, str, ft_strlen(str));
 	printf("|	%serrno = %d, ret = %d	%s%s\n\n", "\033[1;32m", errno, ret, strerror(errno), "\033[0m");
 
-	fd = open("./test_wr", O_WRONLY);
+	fd = open("./tests/sample.txt", O_WRONLY);
 	errno = 0;
 	ret = ft_write(fd, str, ft_strlen(str));
 	printf("|		%serrno = %d, ret = %d	%s%s\n", "\033[1;33m", errno, ret, strerror(errno), "\033[0m");
@@ -117,7 +139,7 @@ void	print_read(void)
 {
 	int ret;
 	int fd;
-	char str[4098];
+	char	str[4098];
 
 	fd = 0;
 	errno = 0;
@@ -129,23 +151,23 @@ void	print_read(void)
 	ret = read(fd, str, 4098);
 	printf("%serrno = %d, ret = %d	%s%s\n\n", "\033[1;32m", errno, ret, strerror(errno), "\033[0m");
 
-	fd = open("./test_rd", O_RDONLY);
+	fd = open("./tests/lorem.txt", O_RDONLY);
 	errno = 0;
 	ret = ft_read(fd, str, 4098);
 	printf("%serrno = %d, ret = %d	%s%s\n", "\033[1;33m", errno, ret, strerror(errno), "\033[0m");
 	close(fd);
-	fd = open("./test_rd", O_RDONLY);
+	fd = open("./tests/lorem.txt", O_RDONLY);
 	errno = 0;
 	ret = read(fd, str, 4098);
 	printf("%serrno = %d, ret = %d	%s%s\n\n", "\033[1;32m", errno, ret, strerror(errno), "\033[0m");
 	close(fd);
 
 	errno = 0;
-	fd = open("./test_rd", O_RDONLY);
+	fd = open("./tests/lorem.txt", O_RDONLY);
 	ret = ft_read(fd, str, 4);
 	printf("%serrno = %d, ret = %d	%s%s\n", "\033[1;33m", errno, ret, strerror(errno), "\033[0m");
 	close(fd);
-	fd = open("./test_rd", O_RDONLY);
+	fd = open("./tests/lorem.txt", O_RDONLY);
 	errno = 0;
 	ret = read(fd, str, 4);
 	printf("%serrno = %d, ret = %d	%s%s\n\n", "\033[1;32m", errno, ret, strerror(errno), "\033[0m");
@@ -162,9 +184,19 @@ void	print_read(void)
 
 void	print_strdup(void)
 {
-	char str0[500] = "";
-	char str1[500] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+	int		fd;
+	char	str0[500] = "";
+	char	str1[500] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+	char	buf[4096];
 
+	fd = open("tests/charizard.txt", O_RDONLY);
+	read(fd, buf, 4095);
+	printf("%s%s|%s\n", "\033[0;1;33m", ft_strdup(buf), "\033[0m");
+	close(fd);
+	fd = open("tests/charizard.txt", O_RDONLY);
+	read(fd, buf, 4095);
+	printf("%s%s|%s\n\n", "\033[1;32m", strdup(buf), "\033[0m");
+	close(fd);
 	printf("%s%s|%s\n", "\033[0;1;33m", ft_strdup(str0), "\033[0m");
 	printf("%s%s|%s\n\n", "\033[1;32m", strdup(str0), "\033[0m");
 	printf("%s%s|%s\n", "\033[1;33m", ft_strdup(str1), "\033[0m");

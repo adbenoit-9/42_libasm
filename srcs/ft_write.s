@@ -12,7 +12,7 @@ ft_write:
 err:
     neg rax
     mov rcx, rax
-    call __errno_location ;prob de protection sur rax donc segfault
+    call __errno_location
     mov [rax], rcx
     mov rax, -1
     ret
