@@ -12,5 +12,5 @@ $ make
 ```
 ### Execute tests
 ```
-make run
+$ make run
 ```
